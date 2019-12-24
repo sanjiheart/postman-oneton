@@ -8,6 +8,7 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import tw.sanjiheart.model.MailClientConf;
 import tw.sanjiheart.model.MailServerConf;
+import tw.sanjiheart.util.HttpException;
 
 @Service
 public class MailService {
@@ -36,7 +38,7 @@ public class MailService {
     return mailSender;
   }
 
-  public void send() {
+  public MailClientConf send() {
     try {
       MimeMessage message = javaMailSender().createMimeMessage();
       MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -52,12 +54,15 @@ public class MailService {
             helper.addAttachment(file.getFilename(), file);
           } catch (MessagingException e) {
             e.printStackTrace();
+            throw new HttpException(HttpStatus.SERVICE_UNAVAILABLE, e.getMessage());
           }
         });
       }
       javaMailSender().send(message);
+      return clientConf;
     } catch (MessagingException e) {
       e.printStackTrace();
+      throw new HttpException(HttpStatus.SERVICE_UNAVAILABLE, e.getMessage());
     }
   }
 

@@ -10,11 +10,11 @@
 
 ## Features
 
-- Set **MAIL_SERVER** configuration dynamically (set by API)
-- Set **MAIL_CLIENT** configuration dynamically (set by API)
-- Schedule to send e-mail (set in code)
+- Set **MAIL_SERVER** configuration dynamically (by API)
+- Set **MAIL_CLIENT** configuration dynamically (by API)
+- Schedule to send email (in code)
+- Send email manually (by API)
 
 ## TODO
 
-- Send email by API
 - Set configurations by UI
