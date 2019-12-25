@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Postman Oneton</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-info">
+            <div class="container">
+                <a class="navbar-brand">Postman Oneton</a>
+            </div>
+        </nav>
+    </header>
+    <main style="margin-top: 1em;">
+        <div class="container">
+            <form @submit.prevent="saveMailServerConf()">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="float-left">Mail Server Configuration</h5>
+                        <button type="button" class="btn btn-default btn-sm float-right" data-toggle="collapse"
+                            data-target="#mailServerConfDiv">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                    <div class="collapse show" id="mailServerConfDiv">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="host">Host</label>
+                                        <input type="text" class="form-control" id="host" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="port">Port</label>
+                                        <input type="text" class="form-control" id="port" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="numOfProperties">Number of properties</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" min="0" value="0"
+                                                id="numOfProperties">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-secondary"
+                                                    @click="setPropertyCmpnts()">Confirm</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <property-cmpnt v-for="n in numOfProperties"></property-cmpnt>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-save fa-fw"></i>
+                                <span>Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <form @submit.prevent="saveMailClientConf()">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="float-left">Mail Client Configuration</h5 class="float-left">
+                        <button type="button" class="btn btn-default btn-sm float-right" data-toggle="collapse"
+                            data-target="#mailClientConfDiv">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                    <div class="collapse show" id="mailClientConfDiv">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="to">To (separated by semicolons)</label>
+                                        <input type="text" class="form-control" id="to">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" class="form-control" id="subject">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="text">Text</label>
+                                        <input type="text" class="form-control" id="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="numOfAttachments">Number of attachments</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" min="0" value="0"
+                                                id="numOfAttachments">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-secondary"
+                                                    @click="setAttachmentCmpnts()">Confirm</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <attachment-cmpnt v-for="n in numOfAttachments"></attachment-cmpnt>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-save fa-fw"></i>
+                                <span>Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
