@@ -2,6 +2,6 @@ package tw.sanjiheart.model;
 
 public enum ConfType {
 
-  MAIL_SERVER(), MAIL_CLIENT();
+  MAIL_SERVER, MAIL_CLIENT, SCHEDULE;
 
 }

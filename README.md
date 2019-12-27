@@ -14,7 +14,7 @@
 
 - Set **MAIL_SERVER** configuration dynamically
 - Set **MAIL_CLIENT** configuration dynamically
-- Schedule to send email (in code)
+- Send email by scheduling (by API)
 - Send email manually (by API)
 
 ## First execution

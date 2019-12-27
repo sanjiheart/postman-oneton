@@ -25,7 +25,7 @@ public class MailService {
   private ConfService confService;
 
   private JavaMailSender javaMailSender() {
-    MailServerConf serverConf = confService.loadMailServerConf();
+    MailServerConf serverConf = confService.loadMailServer();
     JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
     mailSender.setHost(serverConf.getHost());
     mailSender.setPort(serverConf.getPort());
@@ -42,7 +42,7 @@ public class MailService {
     try {
       MimeMessage message = javaMailSender().createMimeMessage();
       MimeMessageHelper helper = new MimeMessageHelper(message, true);
-      MailClientConf clientConf = confService.loadMailClientConf();
+      MailClientConf clientConf = confService.loadMailClient();
       String[] toArr = new String[clientConf.getTo().size()];
       helper.setTo(clientConf.getTo().toArray(toArr));
       helper.setSubject(clientConf.getSubject());
